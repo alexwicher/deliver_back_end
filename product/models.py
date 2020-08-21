@@ -14,7 +14,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products_imgs/', blank=True, null=True)
     description = models.TextField(blank=True)
