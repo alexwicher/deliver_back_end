@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from products.models import Category, Product
-from products.serializers import CategoriesListSerializer, ProductsListSerializer
+from product.models import Category, Product
+from product.serializers import CategoriesListSerializer, ProductsListSerializer
 
 
 class CategoriesList(APIView):

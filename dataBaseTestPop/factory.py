@@ -1,7 +1,7 @@
 import factory.django
 from factory.fuzzy import FuzzyDecimal
 
-from products.models import Product, Category
+from product.models import Product, Category
 
 
 class CategoryFactory(factory.django.DjangoModelFactory):
