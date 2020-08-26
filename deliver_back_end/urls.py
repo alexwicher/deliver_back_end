@@ -9,7 +9,7 @@ from deliver_back_end import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, })
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }),
     path('', include('product.urls')),
     url(r'^auth/', include('djoser.urls')),
     url(r'^auth/', include('djoser.urls.jwt')),
