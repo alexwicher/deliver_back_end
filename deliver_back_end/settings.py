@@ -156,6 +156,8 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'SERIALIZERS': {},
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SET_PASSWORD_RETYPE': True,
 }
 EMAIL = {
     "password_reset": "template.email.password_reset",

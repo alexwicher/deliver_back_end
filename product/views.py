@@ -7,6 +7,8 @@ from product.serializers import CategoriesListSerializer, ProductsListSerializer
 
 
 class CategoriesList(APIView):
+    permission_classes = []
+
     def get(self, request):
         categories = Category.objects.all()
         serializer = CategoriesListSerializer(categories, many=True, read_only=True)
@@ -14,6 +16,8 @@ class CategoriesList(APIView):
 
 
 class ProductsList(APIView):
+    permission_classes = []
+
     def post(self, request):
         if (request.data['category_id'] == 0):
             products = Product.objects.all()
