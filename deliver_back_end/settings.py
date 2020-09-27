@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'djoser',
 
     'product.apps.ProductsConfig',
+    'order.apps.OrdersConfig',
     'user.apps.UserConfig',
 
 ]
