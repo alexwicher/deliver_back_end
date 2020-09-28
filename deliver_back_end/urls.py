@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.static import serve
 
-
 from dataBaseTestPop.factory import ProductFactory
 from deliver_back_end import settings
 
@@ -12,9 +11,8 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }),
     path('', include('product.urls')),
     path('', include('order.urls')),
+    path('', include('user.urls')),
     url(r'^auth/', include('djoser.urls')),
-    url(r'^auth/', include('djoser.urls.jwt')),
-
 ]
 
 # comment this for when executing migrate and makemigrations
