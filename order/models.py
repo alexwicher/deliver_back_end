@@ -5,7 +5,7 @@ from user.models import User
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE, null=False)
+    user = models.ForeignKey(User, related_name='order_user', on_delete=models.CASCADE, null=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)

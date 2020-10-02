@@ -12,6 +12,7 @@ urlpatterns = [
     path('', include('product.urls')),
     path('', include('order.urls')),
     path('', include('user.urls')),
+    path('', include('address.urls')),
     url(r'^auth/', include('djoser.urls')),
 ]
 
