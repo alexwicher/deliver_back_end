@@ -9,7 +9,8 @@ from address.serializers import AddressSerializer
 class AddressAdd(APIView):
 
     def post(self, request):
-        address = Address(user_id=request.user.id, address=request.data['direction']).save()
+        address = Address(user_id=request.user.id, address=request.data['direction'])
+        address.save()
         return Response({'dirId': address.id}, status=status.HTTP_202_ACCEPTED)
 
 
@@ -24,5 +25,5 @@ class AddressGet(APIView):
 
     def get(self, request):
         addresses = Address.objects.filter(user=request.user)
-        serializer = AddressSerializer(addresses, many=True, read_only=True)
-        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        serializer = AddressSerializer(many=True)
+        return Response(serializer.create(addresses), status=status.HTTP_202_ACCEPTED)

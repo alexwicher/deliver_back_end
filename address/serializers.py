@@ -1,12 +1,14 @@
 from rest_framework import serializers
 
-from address.models import Address
+
+class AddressListSerializer(serializers.ListSerializer):
+    def create(self, validated_data):
+        dict = {}
+        for item in validated_data:
+            dict[item.id] = item.address
+        return dict
 
 
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Address
-        fields = ['id', 'address']
-
-    def to_representation(self, instance):
-        return {instance.id: instance.address}
+        list_serializer_class = AddressListSerializer
