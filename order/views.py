@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from order.models import Order, OrderItem
-from order.serializers import OrderCreateSerializer
+from order.serializers import OrderCreateSerializer, OrderGetSerializer
 from product.models import Product
 
 
@@ -22,3 +22,11 @@ class OrderCreate(APIView):
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
         return Response(None, status=status.HTTP_400_BAD_REQUEST)
+
+class OrderGet(APIView):
+
+    def get(self, request):
+        current_user = request.user
+        order = Order.objects.filter(user=current_user)
+        serializer = OrderGetSerializer(order,many=True,read_only=True)
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
