@@ -8,13 +8,14 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         model = Order
         fields = ('id',)
 
+
 class OrderItemsGetSerializer(serializers.ModelSerializer):
     product_name = serializers.SerializerMethodField('get_product_name')
     product_price = serializers.SerializerMethodField('get_product_price')
     total = serializers.SerializerMethodField('get_total')
 
     def get_product_price(self, obj):
-        product_price = obj.product.price 
+        product_price = obj.product.price
         return product_price
 
     def get_product_name(self, obj):
@@ -27,11 +28,14 @@ class OrderItemsGetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ('quantity','product_name','product_price','total')
+        fields = ('quantity', 'product_name', 'product_price', 'total')
+
 
 class OrderGetSerializer(serializers.ModelSerializer):
     items = OrderItemsGetSerializer(many=True)
     total = serializers.SerializerMethodField('get_total')
+    updated = serializers.SerializerMethodField('get_updated')
+    created = serializers.SerializerMethodField('get_created')
 
     def get_total(self, obj):
         total = 0
@@ -39,6 +43,14 @@ class OrderGetSerializer(serializers.ModelSerializer):
             total += item.product.price * item.quantity
         return total
 
+    def get_created(self, obj):
+        date = obj.created
+        return date.strftime("%d/%m/%Y %H:%M")
+
+    def get_updated(self, obj):
+        date = obj.updated
+        return date.strftime("%d/%m/%Y %H:%M")
+
     class Meta:
         model = Order
-        fields = ('id','created','updated','items','total','paid')
+        fields = ('id', 'created', 'updated', 'items', 'total', 'paid')
